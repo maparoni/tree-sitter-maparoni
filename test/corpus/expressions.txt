@@ -1,15 +1,4 @@
 ==================
-Constants
-==================
-
-geometry
-
----
-
-(source_file
-  (identifier))
-
-==================
 Equality
 ==================
 
@@ -79,3 +68,29 @@ gradient(25, 'traffic', 0, 50) == yellow
     (identifier)
   )
 )
+
+==================
+Gradient comparison 2 (SIC)
+==================
+
+gradient(25, 'alpha', 0, 50, red) == RGB(255, 0, 0, 0.5)
+
+---
+
+(source_file
+  (call_expression
+    (equality_expression
+      (call_expression
+        (identifier)
+        (argument_list
+          (number)
+          (string)
+          (number)
+          (number)
+          (identifier)))
+    (identifier))
+  (argument_list
+    (number)
+    (number)
+    (number)
+    (number))))
