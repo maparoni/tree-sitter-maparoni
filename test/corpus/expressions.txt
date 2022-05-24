@@ -1,0 +1,81 @@
+==================
+Constants
+==================
+
+geometry
+
+---
+
+(source_file
+  (identifier))
+
+==================
+Equality
+==================
+
+distance == 20
+
+---
+
+(source_file
+  (equality_expression
+    (identifier)
+    (number)))
+
+==================
+Arithmetic
+==================
+
+4.5 * 10 == 40 + 5
+
+---
+
+(source_file
+  (equality_expression
+    (multiplicative_expression
+      (number)
+      (number))
+    (additive_expression
+      (number)
+      (number))))
+
+==================
+Prefixes
+==================
+
+-4.5 * +10 == -45
+
+---
+
+(source_file
+  (equality_expression
+    (prefix_expression
+      (multiplicative_expression
+        (number)
+        (prefix_expression
+          (number))))
+    (prefix_expression
+      (number))))
+
+==================
+Gradient comparison
+==================
+
+gradient(25, 'traffic', 0, 50) == yellow
+
+---
+
+(source_file
+  (equality_expression
+    (call_expression
+      (identifier)
+      (argument_list
+        (number)
+        (string)
+        (number)
+        (number)
+      )
+    )
+    (identifier)
+  )
+)
