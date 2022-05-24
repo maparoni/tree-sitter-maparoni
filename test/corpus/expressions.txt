@@ -94,3 +94,41 @@ gradient(25, 'alpha', 0, 50, red) == RGB(255, 0, 0, 0.5)
     (number)
     (number)
     (number))))
+
+==================
+Function call on identifier
+==================
+
+geometry.fill(Color)
+
+---
+
+(source_file
+  (call_expression
+    (navigation_expression
+      (identifier)
+      (navigation_suffix
+        (identifier)))
+    (argument_list
+      (identifier))))
+    
+
+==================
+Function call on function
+==================
+
+line(Coordinate).fill(Color)
+
+---
+
+(source_file
+  (call_expression
+    (navigation_expression
+      (call_expression
+        (identifier)
+        (argument_list
+          (identifier)))
+      (navigation_suffix
+        (identifier)))
+    (argument_list
+      (identifier))))

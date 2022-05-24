@@ -21,7 +21,7 @@ const PRECS = {
   // do: -1,
   fully_open_range: -1,
   range: -1,
-  // navigation: -1,
+  navigation: -1,
   expr: -1,
   // ty: -1,
   call: -2,
@@ -66,20 +66,18 @@ module.exports = grammar({
       choice(
         // $.postfix_expression,
         $.call_expression,
+        $.navigation_expression,
         $.prefix_expression
       ),
 
-    equality_expression: $ => prec.left(
-      PRECS.equality,
-      seq(
-        field("lhs", $._expression),
-        choice(
-          '==',
-          '!='
-        ),
-        field("rhs", $._expression)
-      )
-    ),
+    navigation_expression: ($) =>
+      prec.left(
+        PRECS.navigation,
+        seq(
+          field("target", $._expression),
+          field("suffix", $.navigation_suffix)
+        )
+      ),      
 
     // Binary expressions
     _binary_expression: ($) =>
@@ -141,6 +139,17 @@ module.exports = grammar({
     //     field("if_nil", $._expression)
     //   )
     // ),    
+    equality_expression: $ => prec.left(
+      PRECS.equality,
+      seq(
+        field("lhs", $._expression),
+        choice(
+          '==',
+          '!='
+        ),
+        field("rhs", $._expression)
+      )
+    ),
 
     // Literals
 
@@ -184,6 +193,13 @@ module.exports = grammar({
       prec(
         PRECS.call,
         prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $._call_suffix))
+      ),
+
+    // Suffixes
+    navigation_suffix: ($) =>
+      seq(
+        ".",
+        field("suffix", $.identifier)
       ),
 
     _call_suffix: ($) =>
