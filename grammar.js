@@ -70,49 +70,50 @@ module.exports = grammar({
       ),
 
     equality_expression: $ => prec.left(
+      PRECS.equality,
       seq(
-        $._expression,
+        field("lhs", $._expression),
         choice(
           '==',
           '!='
         ),
-        $._expression
+        field("rhs", $._expression)
       )
     ),
 
     // Binary expressions
     _binary_expression: ($) =>
-    choice(
-      $.multiplicative_expression,
-      $.additive_expression,
-      // $.range_expression,
-      // $.infix_expression,
-      // $.nil_coalescing_expression,
-      // $.check_expression,
-      $.equality_expression
-      // $.comparison_expression,
-      // $.conjunction_expression,
-      // $.disjunction_expression,
-      // $.bitwise_operation
-    ),
+      choice(
+        $.multiplicative_expression,
+        $.additive_expression,
+        // $.range_expression,
+        // $.infix_expression,
+        // $.nil_coalescing_expression,
+        // $.check_expression,
+        $.equality_expression
+        // $.comparison_expression,
+        // $.conjunction_expression,
+        // $.disjunction_expression,
+        // $.bitwise_operation
+      ),
     multiplicative_expression: ($) =>
-    prec.left(
-      PRECS.multiplication,
-      seq(
-        field("lhs", $._expression),
-        field("op", $._multiplicative_operator),
-        field("rhs", $._expression)
-      )
-    ),
+      prec.left(
+        PRECS.multiplication,
+        seq(
+          field("lhs", $._expression),
+          field("op", $._multiplicative_operator),
+          field("rhs", $._expression)
+        )
+      ),
     additive_expression: ($) =>
-    prec.left(
-      PRECS.addition,
-      seq(
-        field("lhs", $._expression),
-        field("op", $._additive_operator),
-        field("rhs", $._expression)
-      )
-    ),
+      prec.left(
+        PRECS.addition,
+        seq(
+          field("lhs", $._expression),
+          field("op", $._additive_operator),
+          field("rhs", $._expression)
+        )
+      ),
     // range_expression: ($) =>
     // prec.right(
     //   PRECS.range,
@@ -154,9 +155,8 @@ module.exports = grammar({
       seq("'", repeat(choice(/[^']/, /\\./)), "'")
     ), 
 
-    // TODO: Boolean literal (true)
     // TODO: Array literal ([1, 2, 3])
-    // TODO: Variable literal (`foo`)
+    // TODO: Variable literal (`foo bar`)
 
     // Arithmetic
 
@@ -179,7 +179,7 @@ module.exports = grammar({
     // TODO: Unary expression (!a)
     // TODO: Binary expression (a + b)
 
-    // TODO: Function call (foo(a, b))
+    // Function call (foo(a, b))
     call_expression: ($) =>
       prec(
         PRECS.call,
@@ -195,7 +195,16 @@ module.exports = grammar({
       ),
 
     argument_list: ($) =>
-      seq("(", optional(sep1($._expression, ",")), ")"),
+      seq(
+        "(", 
+        optional(
+          sep1(
+            field("value", $._expression), 
+            ","
+          )
+        ), 
+        ")"
+      ),
     
       
     // TODO: Explicit member expression (foo.bar)
