@@ -32,6 +32,9 @@
       "scope": "source.maparoni-expression",
       "file-types": [
         "mpex"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
       ]
     }
   ]
