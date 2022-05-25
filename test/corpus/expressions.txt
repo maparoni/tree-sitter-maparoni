@@ -6,8 +6,8 @@ distance == 20
 
 ---
 
-(source_file
-  (equality_expression
+(expression
+  (binary_expression
     (identifier)
     (number)))
 
@@ -19,12 +19,12 @@ Arithmetic
 
 ---
 
-(source_file
-  (equality_expression
-    (multiplicative_expression
+(expression
+  (binary_expression
+    (binary_expression
       (number)
       (number))
-    (additive_expression
+    (binary_expression
       (number)
       (number))))
 
@@ -36,15 +36,28 @@ Prefixes
 
 ---
 
-(source_file
-  (equality_expression
-    (prefix_expression
-      (multiplicative_expression
-        (number)
-        (prefix_expression
-          (number))))
+(expression
+  (binary_expression
+    (binary_expression
+      (prefix_expression
+        (number))
+      (prefix_expression
+        (number)))
     (prefix_expression
       (number))))
+
+==================
+Field access
+==================
+
+geometry.area
+
+---
+
+(expression
+  (field_access
+    (identifier)
+    (identifier)))
 
 ==================
 Gradient comparison
@@ -54,9 +67,9 @@ gradient(25, 'traffic', 0, 50) == yellow
 
 ---
 
-(source_file
-  (equality_expression
-    (call_expression
+(expression
+  (binary_expression
+    (method_invocation
       (identifier)
       (argument_list
         (number)
@@ -70,45 +83,43 @@ gradient(25, 'traffic', 0, 50) == yellow
 )
 
 ==================
-Gradient comparison 2 (SIC)
+Gradient comparison 2
 ==================
 
 gradient(25, 'alpha', 0, 50, red) == RGB(255, 0, 0, 0.5)
 
 ---
 
-(source_file
-  (call_expression
-    (equality_expression
-      (call_expression
-        (identifier)
-        (argument_list
-          (number)
-          (string)
-          (number)
-          (number)
-          (identifier)))
-    (identifier))
-  (argument_list
-    (number)
-    (number)
-    (number)
-    (number))))
+(expression
+  (binary_expression
+    (method_invocation
+      (identifier)
+      (argument_list
+        (number)
+        (string)
+        (number)
+        (number)
+        (identifier)))
+    (method_invocation
+      (known_type)
+      (argument_list
+        (number)
+        (number)
+        (number)
+        (number)))))
 
 ==================
 Function call on identifier
 ==================
 
-geometry.fill(Color)
+geometry.fill(red)
 
 ---
 
-(source_file
-  (call_expression
-    (navigation_expression
-      (identifier)
-      (navigation_suffix
-        (identifier)))
+(expression
+  (method_invocation
+    (identifier)
+    (identifier)
     (argument_list
       (identifier))))
     
@@ -117,18 +128,21 @@ geometry.fill(Color)
 Function call on function
 ==================
 
-line(Coordinate).fill(Color)
+line(Position(33, -151)).fill(green)
 
 ---
 
-(source_file
-  (call_expression
-    (navigation_expression
-      (call_expression
-        (identifier)
-        (argument_list
-          (identifier)))
-      (navigation_suffix
-        (identifier)))
+(expression
+  (method_invocation
+    (method_invocation
+      (identifier)
+      (argument_list
+        (method_invocation
+          (known_type)
+          (argument_list
+            (number)
+            (prefix_expression
+              (number))))))
+    (identifier)
     (argument_list
       (identifier))))

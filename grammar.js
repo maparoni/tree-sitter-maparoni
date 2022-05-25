@@ -1,159 +1,122 @@
-const PRECS = {
-  multiplication: 11,
-  addition: 10,
-  infix_operations: 9,
-  nil_coalescing: 8,
-  check: 7,
-  prefix_operations: 7,
-  comparison: 6,
-  postfix_operations: 6,
-  equality: 5,
-  conjunction: 4,
-  disjunction: 3,
-  // block: 2,
-  // loop: 1,
-  // keypath: 1,
-  // control_transfer: 0,
-  // as: -1,
-  // tuple: -1,
-  // if: -1,
-  // switch: -1,
-  // do: -1,
-  fully_open_range: -1,
-  range: -1,
-  navigation: -1,
-  expr: -1,
-  // ty: -1,
-  call: -2,
-  ternary: -2,
-  try: -2,
-  call_suffix: -2,
-  range_suffix: -2,
-  ternary_binary_suffix: -2,
-  // await: -2,
-  // assignment: -3,
-  comment: -3,
-  // lambda: -3,
-};
-
-const DYNAMIC_PRECS = {
-  call: 1,
+const PREC = {
+  // https://introcs.cs.princeton.edu/java/11precedence/
+  COMMENT: 0,      // //  /*  */
+  ELEMENT_VAL: 2,
+  TERNARY: 3,      // ?:
+  OR: 4,           // ||
+  AND: 5,          // &&
+  BIT_OR: 6,       // |
+  BIT_XOR: 7,      // ^
+  BIT_AND: 8,      // &
+  EQUALITY: 9,     // ==  !=
+  GENERIC: 10,
+  REL: 10,         // <  <=  >  >=
+  SHIFT: 11,       // <<  >>  >>>
+  ADD: 12,         // +  -
+  MULT: 13,        // *  /  %
+  UNARY: 15,       // ++a  --a  a++  a--  +  -  !  ~
+  ARRAY: 16,       // [Index]
+  OBJ_ACCESS: 16,  // .
+  PARENS: 16,      // (Expression)
 };
 
 module.exports = grammar({
   name: 'maparoni',
 
   rules: {
-    source_file: $ => $._expression,
+    expression: $ => $._expression,
 
-    _expression: $ => 
-      prec(
-        PRECS.expr,
-        choice(
-          $.identifier,
-          $.boolean,
-          $.number,
-          $.string,
-          $._unary_expression,
-          $._binary_expression,
-          // $.equality_expression,
-          // TODO: other kinds of expressions
-        )
+    _expression: $=> choice(
+        $._unary_expression,
+        $.binary_expression,
+        $._primary_expression,
+        // TODO: other kinds of expressions
       ),
 
-    // Unary expressions
-    _unary_expression: ($) =>
-      choice(
-        // $.postfix_expression,
-        $.call_expression,
-        $.navigation_expression,
-        $.prefix_expression
-      ),
+    // // Unary expressions
+    // _unary_expression: ($) =>
+    //   choice(
+    //     // $.postfix_expression,
+    //     $.call_expression,
+    //     $.navigation_expression,
+    //     $.prefix_expression
+    //   ),
 
-    navigation_expression: ($) =>
-      prec.left(
-        PRECS.navigation,
-        seq(
-          field("target", $._expression),
-          field("suffix", $.navigation_suffix)
-        )
-      ),      
+    // navigation_expression: ($) =>
+    //   prec.left(
+    //     PRECS.navigation,
+    //     seq(
+    //       field("target", $.expression),
+    //       field("suffix", $.navigation_suffix)
+    //     )
+    //   ),      
 
-    // Binary expressions
-    _binary_expression: ($) =>
-      choice(
-        $.multiplicative_expression,
-        $.additive_expression,
-        // $.range_expression,
-        // $.infix_expression,
-        // $.nil_coalescing_expression,
-        // $.check_expression,
-        $.equality_expression
-        // $.comparison_expression,
-        // $.conjunction_expression,
-        // $.disjunction_expression,
-        // $.bitwise_operation
-      ),
-    multiplicative_expression: ($) =>
-      prec.left(
-        PRECS.multiplication,
-        seq(
-          field("lhs", $._expression),
-          field("op", $._multiplicative_operator),
-          field("rhs", $._expression)
-        )
-      ),
-    additive_expression: ($) =>
-      prec.left(
-        PRECS.addition,
-        seq(
-          field("lhs", $._expression),
-          field("op", $._additive_operator),
-          field("rhs", $._expression)
-        )
-      ),
-    // range_expression: ($) =>
-    // prec.right(
-    //   PRECS.range,
-    //   seq(
-    //     field("start", $._expression),
-    //     field("op", $._range_operator),
-    //     field("end", $._expression)
-    //   )
-    // ),
-    // infix_expression: ($) =>
-    // prec.left(
-    //   PRECS.infix_operations,
-    //   seq(
-    //     field("lhs", $._expression),
-    //     field("op", $.custom_operator),
-    //     field("rhs", $._expression)
-    //   )
-    // ),
-    // nil_coalescing_expression: ($) =>
-    // prec.right(
-    //   PRECS.nil_coalescing,
-    //   seq(
-    //     field("value", $._expression),
-    //     $._nil_coalescing_operator,
-    //     field("if_nil", $._expression)
-    //   )
-    // ),    
-    equality_expression: $ => prec.left(
-      PRECS.equality,
-      seq(
-        field("lhs", $._expression),
-        choice(
-          '==',
-          '!='
-        ),
-        field("rhs", $._expression)
-      )
-    ),
+    binary_expression: $ => choice(
+      ...[
+        ['>', PREC.REL],
+        ['<', PREC.REL],
+        ['>=', PREC.REL],
+        ['<=', PREC.REL],
+        ['==', PREC.EQUALITY],
+        ['!=', PREC.EQUALITY],
+        ['&&', PREC.AND],
+        ['||', PREC.OR],
+        ['+', PREC.ADD],
+        ['-', PREC.ADD],
+        ['*', PREC.MULT],
+        ['/', PREC.MULT],
+        ['&', PREC.BIT_AND],
+        ['|', PREC.BIT_OR],
+        ['^', PREC.BIT_XOR],
+        ['%', PREC.MULT],
+        ['<<', PREC.SHIFT],
+        ['>>', PREC.SHIFT],
+        ['>>>', PREC.SHIFT],
+      ].map(([operator, precedence]) =>
+        prec.left(precedence, seq(
+          field('left', $._expression),
+          field('operator', operator),
+          field('right', $._expression)
+        ))
+      )),
+
+    _unary_expression: $ => $.prefix_expression,
+    
+    prefix_expression: $ => choice(
+      ...[
+        ['+', PREC.UNARY],
+        ['-', PREC.UNARY],
+        ['!', PREC.UNARY],
+      ].map(([operator, precedence]) =>
+        prec.left(precedence, seq(
+          field('operator', operator),
+          field('operand', $._expression)
+        ))
+      )),      
+
+    // TODO: Ternary expression (a ? b : c)
+
+    _primary_expression: $ => choice(
+      $.identifier,
+      $._basic_literal,
+      $.field_access,
+      $.method_invocation,
+  ),
 
     // Literals
+    _basic_literal: ($) =>
+      choice(
+        $.number,
+        // $.hex_literal,
+        // $.oct_literal,
+        // $.bin_literal,
+        // $.real_literal,
+        $.boolean,
+        $.string,
+        "nil"
+      ),    
 
-    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
+    identifier: $ => /[a-z][a-zA-Z0-9_]*/,
 
     boolean: ($) => choice("true", "false"),
 
@@ -167,48 +130,60 @@ module.exports = grammar({
     // TODO: Array literal ([1, 2, 3])
     // TODO: Variable literal (`foo bar`)
 
-    // Arithmetic
+    // Fields
 
-    _prefix_operator: $ => prec.right(
+    field_access: $ => seq(
+      field('object', $._primary_expression),
+      '.',
+      field('field', $.identifier)
+    ),    
+
+    // Functions
+
+    method_invocation: $ => seq(
       choice(
-        '-',
-        '+',
-        '!'
-      )
-    ),
-    prefix_expression: $ => prec.left(
-      PRECS.prefix_operations,
-      seq(
-        field("operation", $._prefix_operator),
-        $._expression
-      )
-    ),
-
-    // TODO: Ternary expression (a ? b : c)
-    // TODO: Unary expression (!a)
-    // TODO: Binary expression (a + b)
-
-    // Function call (foo(a, b))
-    call_expression: ($) =>
-      prec(
-        PRECS.call,
-        prec.dynamic(DYNAMIC_PRECS.call, seq($._expression, $._call_suffix))
-      ),
-
-    // Suffixes
-    navigation_suffix: ($) =>
-      seq(
-        ".",
-        field("suffix", $.identifier)
-      ),
-
-    _call_suffix: ($) =>
-      prec(
-        PRECS.call_suffix,
+        field('name', choice($.identifier, $.known_type)),
         seq(
-          $.argument_list
+          field('object', $._primary_expression),
+          '.',
+          field('name', $.identifier),
         )
       ),
+      field('arguments', $.argument_list)
+    ),
+
+    // argument_list: $ => seq('(', commaSep($.expression), ')'),    
+
+    // // Function call (foo(a, b))
+    // call_expression: ($) =>
+    //   prec(
+    //     PRECS.call,
+    //     // prec.dynamic(DYNAMIC_PRECS.call, seq(
+    //     //   choice($.identifier, $.known_type), 
+    //     //   $._call_suffix)
+    //     // )
+    //     prec.left(
+    //       seq(
+    //         choice($.identifier, $.known_type, $.navigation_expression), 
+    //         $._call_suffix
+    //       )
+    //     )
+    //   ),
+
+    // // Suffixes
+    // navigation_suffix: ($) =>
+    //   seq(
+    //     ".",
+    //     field("suffix", $.identifier)
+    //   ),
+
+    // _call_suffix: ($) =>
+    //   prec(
+    //     PRECS.call_suffix,
+    //     seq(
+    //       $.argument_list
+    //     )
+    //   ),
 
     argument_list: ($) =>
       seq(
@@ -221,14 +196,12 @@ module.exports = grammar({
         ), 
         ")"
       ),
-    
       
-    // TODO: Explicit member expression (foo.bar)
-
     // TODO: Comments???
+    // MAPARONI Specials
 
-    _additive_operator: ($) => choice("+", "-"),
-    _multiplicative_operator: ($) => choice("*", "/", "%"),
+    known_type: $ => choice("Number", "Rating", "Date", "Time", "Instant", "Position", "Color", "RGB", "Style"),
+
   }
 });
 
