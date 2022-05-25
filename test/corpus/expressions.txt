@@ -101,7 +101,7 @@ gradient(25, 'alpha', 0, 50, red) == RGB(255, 0, 0, 0.5)
         (number)
         (identifier)))
     (method_invocation
-      (known_type)
+      (type_identifier)
       (argument_list
         (number)
         (number)
@@ -138,11 +138,141 @@ line(Position(33, -151)).fill(green)
       (identifier)
       (argument_list
         (method_invocation
-          (known_type)
+          (type_identifier)
           (argument_list
             (number)
             (prefix_expression
               (number))))))
+    (identifier)
+    (argument_list
+      (identifier))))
+
+================================================================================
+Conjunction with call sites
+================================================================================
+
+a
+    && c.b()
+
+--------------------------------------------------------------------------------
+
+(expression
+  (binary_expression
+    (identifier)
+    (method_invocation
+      (identifier)
+      (identifier)
+      (argument_list))))
+
+================================================================================
+Ternary expression
+================================================================================
+
+someVeryLongFunctionCall()
+    ? doSomethingHere()
+    : fallback
+
+--------------------------------------------------------------------------------
+
+(expression
+  (ternary_expression
+    (method_invocation
+      (identifier)
+      (argument_list))
+    (method_invocation
+      (identifier)
+      (argument_list))
+    (identifier)))
+
+================================================================================
+Switch with open ranges
+================================================================================
+
+switch(dist)
+  .case(..<2000, "🚶‍♂️")
+  .case(..<10000, "🚴‍♀️")
+  .default("🚌")
+
+--------------------------------------------------------------------------------
+
+(expression
+  (method_invocation
+    (method_invocation
+      (method_invocation
+        (method_invocation
+          (identifier)
+          (argument_list
+            (identifier)))
+        (identifier)
+        (argument_list
+          (open_start_range_expression
+            (number))
+          (string)))
+      (identifier)
+      (argument_list
+        (open_start_range_expression
+          (number))
+        (string)))
+    (identifier)
+    (argument_list
+      (string))))
+
+================================================================================
+Switch with closed range
+================================================================================
+
+switch(name)
+  .case("Covid-19 in NSW",
+    switch(covidLastWeek)
+      .case(0, clear)
+      .case(1...5, yellow)
+      .default(red)
+      .alpha(0.2)
+  )
+  .case("Sydney Friends", blue)
+  .default(black)
+
+--------------------------------------------------------------------------------
+
+(expression
+  (method_invocation
+    (method_invocation
+      (method_invocation
+        (method_invocation
+          (identifier)
+          (argument_list
+            (identifier)))
+        (identifier)
+        (argument_list
+          (string)
+          (method_invocation
+            (method_invocation
+              (method_invocation
+                (method_invocation
+                  (method_invocation
+                    (identifier)
+                    (argument_list
+                      (identifier)))
+                  (identifier)
+                  (argument_list
+                    (number)
+                    (identifier)))
+                (identifier)
+                (argument_list
+                  (range_expression
+                    (number)
+                    (number))
+                  (identifier)))
+              (identifier)
+              (argument_list
+                (identifier)))
+            (identifier)
+            (argument_list
+              (number)))))
+      (identifier)
+      (argument_list
+        (string)
+        (identifier)))
     (identifier)
     (argument_list
       (identifier))))

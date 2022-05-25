@@ -3,3 +3,4 @@ node_modules
 /src/*
 !/src/scanner.c
 Cargo.lock
+*.wasm

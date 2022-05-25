@@ -10,6 +10,17 @@ geometry
   (identifier))
 
 ================================================================================
+Identifiers with ticks
+================================================================================
+
+`my geometry`
+
+--------------------------------------------------------------------------------
+
+(expression
+  (identifier))  
+
+================================================================================
 Boolean literals - true
 ================================================================================
 
@@ -96,4 +107,60 @@ Real literals - Negative
 
 (expression
   (prefix_expression
+    (number)))
+
+
+================================================================================
+Array
+================================================================================
+
+[
+  geometry.transform('BoundingBox').fill(yellow.alpha(0.2)),
+  Style(geometry).fill(red.alpha(0.5))
+]
+
+--------------------------------------------------------------------------------
+
+(expression
+  (array
+    (method_invocation
+      (method_invocation
+        (identifier)
+        (identifier)
+        (argument_list
+          (string)))
+      (identifier)
+      (argument_list
+        (method_invocation
+          (identifier)
+          (identifier)
+          (argument_list
+            (number)))))
+    (method_invocation
+      (method_invocation
+        (type_identifier)
+        (argument_list
+          (identifier)))
+      (identifier)
+      (argument_list
+        (method_invocation
+          (identifier)
+          (identifier)
+          (argument_list
+            (number)))))))
+
+================================================================================
+Array with trailing comma
+================================================================================
+
+[
+  4, 
+  2,
+]
+
+--------------------------------------------------------------------------------
+
+(expression
+  (array
+    (number)
     (number)))

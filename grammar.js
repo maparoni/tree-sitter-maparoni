@@ -1,6 +1,8 @@
 const PREC = {
   // https://introcs.cs.princeton.edu/java/11precedence/
   COMMENT: 0,      // //  /*  */
+  RANGE_SUFFIX: 1, // ..
+  RANGE:        2, // ..
   ELEMENT_VAL: 2,
   TERNARY: 3,      // ?:
   OR: 4,           // ||
@@ -29,27 +31,10 @@ module.exports = grammar({
     _expression: $=> choice(
         $._unary_expression,
         $.binary_expression,
+        $.range_expression,
         $._primary_expression,
-        // TODO: other kinds of expressions
+        $.ternary_expression,
       ),
-
-    // // Unary expressions
-    // _unary_expression: ($) =>
-    //   choice(
-    //     // $.postfix_expression,
-    //     $.call_expression,
-    //     $.navigation_expression,
-    //     $.prefix_expression
-    //   ),
-
-    // navigation_expression: ($) =>
-    //   prec.left(
-    //     PRECS.navigation,
-    //     seq(
-    //       field("target", $.expression),
-    //       field("suffix", $.navigation_suffix)
-    //     )
-    //   ),      
 
     binary_expression: $ => choice(
       ...[
@@ -80,7 +65,23 @@ module.exports = grammar({
         ))
       )),
 
-    _unary_expression: $ => $.prefix_expression,
+    range_expression: $ => choice(
+      ...[
+        ['...', PREC.RANGE],
+        ['..<', PREC.RANGE],
+      ].map(([operator, precedence]) =>
+        prec.left(precedence, seq(
+          field('start', $._expression),
+          field('operator', operator),
+          field('end', $._expression)
+        ))
+      )),      
+
+    _unary_expression: $ => choice(
+      $.prefix_expression,
+      $.open_start_range_expression,
+      $.open_end_range_expression,
+    ),
     
     prefix_expression: $ => choice(
       ...[
@@ -92,16 +93,37 @@ module.exports = grammar({
           field('operator', operator),
           field('operand', $._expression)
         ))
-      )),      
+      )),
 
-    // TODO: Ternary expression (a ? b : c)
+    open_start_range_expression: ($) =>
+      prec.right(
+        PREC.RANGE,
+        seq(
+          choice("..<", "..."),
+          prec.right(PREC.RANGE_SUFFIX, field("end", $._expression))
+        )
+      ),
+    
+    open_end_range_expression: ($) =>
+      prec.right(
+        PREC.RANGE,
+        seq(field("start", $._expression), "...")
+      ),      
 
     _primary_expression: $ => choice(
       $.identifier,
       $._basic_literal,
       $.field_access,
       $.method_invocation,
-  ),
+    ),
+
+    ternary_expression: $ => prec.right(PREC.TERNARY, seq(
+      field('condition', $._expression),
+      '?',
+      field('consequence', $._expression),
+      ':',
+      field('alternative', $._expression)
+    )),  
 
     // Literals
     _basic_literal: ($) =>
@@ -113,26 +135,39 @@ module.exports = grammar({
         // $.real_literal,
         $.boolean,
         $.string,
+        $.array,
         "nil"
       ),    
 
-    identifier: $ => /[a-z][a-zA-Z0-9_]*/,
+    identifier: ($) => choice(
+      /[a-z][a-zA-Z0-9_]*/,
+      seq('`', /[^`]+/, '`')
+    ),
+
+    type_identifier: ($) => /[A-Z][a-zA-Z0-9_]*/,
 
     boolean: ($) => choice("true", "false"),
 
-    number: $ => /[0-9]+(\.[0-9]+)?/,
+    number: ($) => /[0-9]+(\.[0-9]+)?/,
 
-    string: $ => choice(
+    string: ($) => choice(
       seq('"', repeat(choice(/[^"]/, /\\./)), '"'),
       seq("'", repeat(choice(/[^']/, /\\./)), "'")
     ), 
 
-    // TODO: Array literal ([1, 2, 3])
-    // TODO: Variable literal (`foo bar`)
+    array: ($) =>
+      seq(
+        "[",
+        optional(sep1(field("element", $._expression), ",")),
+        optional(","),
+        "]"
+      ),
+
+    // TODO: Two-sided ranges (`1..<10`)
 
     // Fields
 
-    field_access: $ => seq(
+    field_access: ($) => seq(
       field('object', $._primary_expression),
       '.',
       field('field', $.identifier)
@@ -140,9 +175,9 @@ module.exports = grammar({
 
     // Functions
 
-    method_invocation: $ => seq(
+    method_invocation: ($) => seq(
       choice(
-        field('name', choice($.identifier, $.known_type)),
+        field('name', choice($.identifier, $.type_identifier)),
         seq(
           field('object', $._primary_expression),
           '.',
@@ -151,39 +186,6 @@ module.exports = grammar({
       ),
       field('arguments', $.argument_list)
     ),
-
-    // argument_list: $ => seq('(', commaSep($.expression), ')'),    
-
-    // // Function call (foo(a, b))
-    // call_expression: ($) =>
-    //   prec(
-    //     PRECS.call,
-    //     // prec.dynamic(DYNAMIC_PRECS.call, seq(
-    //     //   choice($.identifier, $.known_type), 
-    //     //   $._call_suffix)
-    //     // )
-    //     prec.left(
-    //       seq(
-    //         choice($.identifier, $.known_type, $.navigation_expression), 
-    //         $._call_suffix
-    //       )
-    //     )
-    //   ),
-
-    // // Suffixes
-    // navigation_suffix: ($) =>
-    //   seq(
-    //     ".",
-    //     field("suffix", $.identifier)
-    //   ),
-
-    // _call_suffix: ($) =>
-    //   prec(
-    //     PRECS.call_suffix,
-    //     seq(
-    //       $.argument_list
-    //     )
-    //   ),
 
     argument_list: ($) =>
       seq(
@@ -198,9 +200,6 @@ module.exports = grammar({
       ),
       
     // TODO: Comments???
-    // MAPARONI Specials
-
-    known_type: $ => choice("Number", "Rating", "Date", "Time", "Instant", "Position", "Color", "RGB", "Style"),
 
   }
 });
