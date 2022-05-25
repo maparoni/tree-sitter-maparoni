@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
-/src/*
-!/src/scanner.c
+build
 Cargo.lock
 *.wasm
+bindings/c/*.h
+bindings/c/tree-sitter-*.pc
