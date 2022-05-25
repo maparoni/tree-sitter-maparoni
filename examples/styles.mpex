@@ -1,0 +1,5 @@
+[
+  geometry.transform("BoundingBox"),
+  linePoints,
+  Style(geometry).fill("#ff0000").stroke("#00ff00")
+]

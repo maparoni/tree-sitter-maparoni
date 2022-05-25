@@ -9,7 +9,9 @@
   object: (identifier) @type)
  (#match? @type "^[A-Z]"))
 
-
+(method_invocation
+  name: (identifier) @function
+ )
 
 ; Variables
 
