@@ -111,6 +111,7 @@ module.exports = grammar({
       ),      
 
     _primary_expression: $ => choice(
+      $.constant,
       $.identifier,
       $._basic_literal,
       $.field_access,
@@ -137,7 +138,40 @@ module.exports = grammar({
         $.string,
         $.array,
         "nil"
-      ),    
+      ),
+    
+    constant: ($) => choice(
+      "id",
+      "index",
+      "pi",
+      "now",
+      "area",
+      "coordinate",
+      "distance",
+      "latitude",
+      "longitude",
+      "length",
+      "geometry",
+      "clear",
+      "white",
+      "gray",
+      "grey",
+      "black",
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "teal",
+      "blue",
+      "purple",
+      "pink",
+      "brown",
+      "indigo",
+      "linePoints",
+      "collectionColor",
+      "collectionLetter",
+      "collectionName",
+    ),
 
     identifier: ($) => choice(
       /[a-z][a-zA-Z0-9_]*/,
@@ -162,6 +196,8 @@ module.exports = grammar({
         optional(","),
         "]"
       ),
+
+    // TODO: `nil` or other constants?
 
     // TODO: Two-sided ranges (`1..<10`)
 

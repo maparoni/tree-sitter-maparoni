@@ -1,0 +1,10 @@
+switch(name)
+  .case("Covid-19 in NSW",
+    switch(covidLastWeek)
+      .case(0, clear)
+      .case(1...5, yellow)
+      .default(red)
+      .alpha(0.2)
+  )
+  .case("Sydney Friends", blue)
+  .default(black)

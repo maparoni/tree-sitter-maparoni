@@ -20,6 +20,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -88,6 +92,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -153,6 +161,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
             "named": true
           },
           {
@@ -300,6 +312,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -353,6 +369,11 @@
     "fields": {}
   },
   {
+    "type": "constant",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -370,6 +391,10 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "constant",
           "named": true
         },
         {
@@ -439,6 +464,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
             "named": true
           },
           {
@@ -515,6 +544,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -560,6 +593,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
             "named": true
           },
           {
@@ -631,6 +668,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -696,6 +737,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
             "named": true
           },
           {
@@ -785,6 +830,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -861,6 +910,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -934,6 +987,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -996,6 +1053,10 @@
             "named": true
           },
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "field_access",
             "named": true
           },
@@ -1055,6 +1116,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
             "named": true
           },
           {
@@ -1230,7 +1295,91 @@
     "named": false
   },
   {
+    "type": "area",
+    "named": false
+  },
+  {
+    "type": "black",
+    "named": false
+  },
+  {
+    "type": "blue",
+    "named": false
+  },
+  {
+    "type": "brown",
+    "named": false
+  },
+  {
+    "type": "clear",
+    "named": false
+  },
+  {
+    "type": "collectionColor",
+    "named": false
+  },
+  {
+    "type": "collectionLetter",
+    "named": false
+  },
+  {
+    "type": "collectionName",
+    "named": false
+  },
+  {
+    "type": "coordinate",
+    "named": false
+  },
+  {
+    "type": "distance",
+    "named": false
+  },
+  {
     "type": "false",
+    "named": false
+  },
+  {
+    "type": "geometry",
+    "named": false
+  },
+  {
+    "type": "gray",
+    "named": false
+  },
+  {
+    "type": "green",
+    "named": false
+  },
+  {
+    "type": "grey",
+    "named": false
+  },
+  {
+    "type": "id",
+    "named": false
+  },
+  {
+    "type": "index",
+    "named": false
+  },
+  {
+    "type": "indigo",
+    "named": false
+  },
+  {
+    "type": "latitude",
+    "named": false
+  },
+  {
+    "type": "length",
+    "named": false
+  },
+  {
+    "type": "linePoints",
+    "named": false
+  },
+  {
+    "type": "longitude",
     "named": false
   },
   {
@@ -1238,8 +1387,36 @@
     "named": false
   },
   {
+    "type": "now",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "orange",
+    "named": false
+  },
+  {
+    "type": "pi",
+    "named": false
+  },
+  {
+    "type": "pink",
+    "named": false
+  },
+  {
+    "type": "purple",
+    "named": false
+  },
+  {
+    "type": "red",
+    "named": false
+  },
+  {
+    "type": "teal",
+    "named": false
   },
   {
     "type": "true",
@@ -1248,6 +1425,14 @@
   {
     "type": "type_identifier",
     "named": true
+  },
+  {
+    "type": "white",
+    "named": false
+  },
+  {
+    "type": "yellow",
+    "named": false
   },
   {
     "type": "|",

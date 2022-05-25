@@ -890,6 +890,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "constant"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         },
         {
@@ -969,6 +973,131 @@
         {
           "type": "STRING",
           "value": "nil"
+        }
+      ]
+    },
+    "constant": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "index"
+        },
+        {
+          "type": "STRING",
+          "value": "pi"
+        },
+        {
+          "type": "STRING",
+          "value": "now"
+        },
+        {
+          "type": "STRING",
+          "value": "area"
+        },
+        {
+          "type": "STRING",
+          "value": "coordinate"
+        },
+        {
+          "type": "STRING",
+          "value": "distance"
+        },
+        {
+          "type": "STRING",
+          "value": "latitude"
+        },
+        {
+          "type": "STRING",
+          "value": "longitude"
+        },
+        {
+          "type": "STRING",
+          "value": "length"
+        },
+        {
+          "type": "STRING",
+          "value": "geometry"
+        },
+        {
+          "type": "STRING",
+          "value": "clear"
+        },
+        {
+          "type": "STRING",
+          "value": "white"
+        },
+        {
+          "type": "STRING",
+          "value": "gray"
+        },
+        {
+          "type": "STRING",
+          "value": "grey"
+        },
+        {
+          "type": "STRING",
+          "value": "black"
+        },
+        {
+          "type": "STRING",
+          "value": "red"
+        },
+        {
+          "type": "STRING",
+          "value": "orange"
+        },
+        {
+          "type": "STRING",
+          "value": "yellow"
+        },
+        {
+          "type": "STRING",
+          "value": "green"
+        },
+        {
+          "type": "STRING",
+          "value": "teal"
+        },
+        {
+          "type": "STRING",
+          "value": "blue"
+        },
+        {
+          "type": "STRING",
+          "value": "purple"
+        },
+        {
+          "type": "STRING",
+          "value": "pink"
+        },
+        {
+          "type": "STRING",
+          "value": "brown"
+        },
+        {
+          "type": "STRING",
+          "value": "indigo"
+        },
+        {
+          "type": "STRING",
+          "value": "linePoints"
+        },
+        {
+          "type": "STRING",
+          "value": "collectionColor"
+        },
+        {
+          "type": "STRING",
+          "value": "collectionLetter"
+        },
+        {
+          "type": "STRING",
+          "value": "collectionName"
         }
       ]
     },

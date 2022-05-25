@@ -7,7 +7,7 @@ geometry
 --------------------------------------------------------------------------------
 
 (expression
-  (identifier))
+  (constant))
 
 ================================================================================
 Identifiers with ticks
@@ -125,14 +125,14 @@ Array
   (array
     (method_invocation
       (method_invocation
-        (identifier)
+        (constant)
         (identifier)
         (argument_list
           (string)))
       (identifier)
       (argument_list
         (method_invocation
-          (identifier)
+          (constant)
           (identifier)
           (argument_list
             (number)))))
@@ -140,11 +140,11 @@ Array
       (method_invocation
         (type_identifier)
         (argument_list
-          (identifier)))
+          (constant)))
       (identifier)
       (argument_list
         (method_invocation
-          (identifier)
+          (constant)
           (identifier)
           (argument_list
             (number)))))))

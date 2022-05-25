@@ -8,7 +8,7 @@ distance == 20
 
 (expression
   (binary_expression
-    (identifier)
+    (constant)
     (number)))
 
 ==================
@@ -56,7 +56,7 @@ geometry.area
 
 (expression
   (field_access
-    (identifier)
+    (constant)
     (identifier)))
 
 ==================
@@ -78,7 +78,7 @@ gradient(25, 'traffic', 0, 50) == yellow
         (number)
       )
     )
-    (identifier)
+    (constant)
   )
 )
 
@@ -99,7 +99,7 @@ gradient(25, 'alpha', 0, 50, red) == RGB(255, 0, 0, 0.5)
         (string)
         (number)
         (number)
-        (identifier)))
+        (constant)))
     (method_invocation
       (type_identifier)
       (argument_list
@@ -118,10 +118,10 @@ geometry.fill(red)
 
 (expression
   (method_invocation
-    (identifier)
+    (constant)
     (identifier)
     (argument_list
-      (identifier))))
+      (constant))))
     
 
 ==================
@@ -145,7 +145,7 @@ line(Position(33, -151)).fill(green)
               (number))))))
     (identifier)
     (argument_list
-      (identifier))))
+      (constant))))
 
 ================================================================================
 Conjunction with call sites
@@ -256,23 +256,23 @@ switch(name)
                   (identifier)
                   (argument_list
                     (number)
-                    (identifier)))
+                    (constant)))
                 (identifier)
                 (argument_list
                   (range_expression
                     (number)
                     (number))
-                  (identifier)))
+                  (constant)))
               (identifier)
               (argument_list
-                (identifier)))
+                (constant)))
             (identifier)
             (argument_list
               (number)))))
       (identifier)
       (argument_list
         (string)
-        (identifier)))
+        (constant)))
     (identifier)
     (argument_list
-      (identifier))))
+      (constant))))
