@@ -10,8 +10,7 @@
  (#match? @type "^[A-Z]"))
 
 (method_invocation
-  name: (identifier) @function
- )
+  name: (identifier) @function)
 
 ; Variables
 
