@@ -37,7 +37,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -57,6 +57,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -109,7 +113,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -129,6 +133,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -181,7 +189,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -201,6 +209,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -282,6 +294,10 @@
             "named": false
           },
           {
+            "type": "??",
+            "named": false
+          },
+          {
             "type": "^",
             "named": false
           },
@@ -329,7 +345,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -349,6 +365,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -379,7 +399,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array",
@@ -410,6 +430,10 @@
           "named": true
         },
         {
+          "type": "nil",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -427,6 +451,10 @@
         },
         {
           "type": "range_expression",
+          "named": true
+        },
+        {
+          "type": "rating",
           "named": true
         },
         {
@@ -484,10 +512,14 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -561,10 +593,14 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -613,7 +649,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -633,6 +669,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -685,7 +725,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -705,6 +745,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -757,7 +801,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -777,6 +821,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -847,7 +895,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -867,6 +915,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -927,7 +979,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -947,6 +999,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -1004,7 +1060,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -1024,6 +1080,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -1070,7 +1130,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -1090,6 +1150,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -1136,7 +1200,7 @@
           },
           {
             "type": "nil",
-            "named": false
+            "named": true
           },
           {
             "type": "number",
@@ -1156,6 +1220,10 @@
           },
           {
             "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
             "named": true
           },
           {
@@ -1279,6 +1347,10 @@
     "named": false
   },
   {
+    "type": "??",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1384,7 +1456,7 @@
   },
   {
     "type": "nil",
-    "named": false
+    "named": true
   },
   {
     "type": "now",
@@ -1409,6 +1481,10 @@
   {
     "type": "purple",
     "named": false
+  },
+  {
+    "type": "rating",
+    "named": true
   },
   {
     "type": "red",

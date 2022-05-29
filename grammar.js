@@ -5,6 +5,7 @@ const PREC = {
   RANGE:        2, // ..
   ELEMENT_VAL: 2,
   TERNARY: 3,      // ?:
+  NIL_COALESCING: 3, // ??
   OR: 4,           // ||
   AND: 5,          // &&
   BIT_OR: 6,       // |
@@ -57,6 +58,7 @@ module.exports = grammar({
         ['<<', PREC.SHIFT],
         ['>>', PREC.SHIFT],
         ['>>>', PREC.SHIFT],
+        ['??', PREC.NIL_COALESCING],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
           field('left', $._expression),
@@ -134,10 +136,11 @@ module.exports = grammar({
         // $.oct_literal,
         // $.bin_literal,
         // $.real_literal,
+        $.rating,
         $.boolean,
         $.string,
         $.array,
-        "nil"
+        $.nil,
       ),
     
     constant: ($) => choice(
@@ -184,10 +187,14 @@ module.exports = grammar({
 
     number: ($) => /[0-9]+(\.[0-9]+)?/,
 
+    rating: ($) => /[★☆]+/,
+
     string: ($) => choice(
       seq('"', repeat(choice(/[^"]/, /\\./)), '"'),
       seq("'", repeat(choice(/[^']/, /\\./)), "'")
-    ), 
+    ),
+
+    nil: ($) => "nil",
 
     array: ($) =>
       seq(

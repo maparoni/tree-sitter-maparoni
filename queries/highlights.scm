@@ -28,7 +28,7 @@
 
 [
   (boolean)
-  "nil"
+  (nil)
 ] @constant.builtin
 
 ; Constants
@@ -95,6 +95,7 @@
   "||"
   "..."
   "..<"
+  "??"
 ] @operator
 
 [
