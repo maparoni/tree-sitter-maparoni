@@ -66,6 +66,15 @@
   "collectionName"
 ] @constant
 
+[
+  "km"
+  "m"
+  "mi"
+  "miles"
+  "ft"
+  "feet"
+] @unit
+
 ; Operators
 
 [

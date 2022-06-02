@@ -1,10 +1,10 @@
 const PREC = {
   // https://introcs.cs.princeton.edu/java/11precedence/
-  COMMENT: 0,      // //  /*  */
+  COMMENT:      0, // //  /*  */
   RANGE_SUFFIX: 1, // ..
   RANGE:        2, // ..
-  ELEMENT_VAL: 2,
-  TERNARY: 3,      // ?:
+  ELEMENT_VAL:  2,
+  TERNARY:      3, // ?:
   NIL_COALESCING: 3, // ??
   OR: 4,           // ||
   AND: 5,          // &&
@@ -18,9 +18,10 @@ const PREC = {
   ADD: 12,         // +  -
   MULT: 13,        // *  /  %
   UNARY: 15,       // ++a  --a  a++  a--  +  -  !  ~
-  ARRAY: 16,       // [Index]
-  OBJ_ACCESS: 16,  // .
-  PARENS: 16,      // (Expression)
+  SUFFIX: 16,      // 10km
+  ARRAY: 17,       // [Index]
+  OBJ_ACCESS: 17,  // .
+  PARENS: 17,      // (Expression)
 };
 
 module.exports = grammar({
@@ -81,6 +82,7 @@ module.exports = grammar({
 
     _unary_expression: $ => choice(
       $.prefix_expression,
+      $.suffix_expression,
       $.open_start_range_expression,
       $.open_end_range_expression,
     ),
@@ -96,6 +98,20 @@ module.exports = grammar({
           field('operand', $._expression)
         ))
       )),
+
+    suffix_expression: $ => prec.left(PREC.SUFFIX, seq(
+        field('operand', $._expression),
+        field('operator', $.unit)
+      )),
+
+    unit: $ => choice(
+      "km",
+      "m",
+      "mi",
+      "miles",
+      "ft",
+      "feet",
+    ),
 
     open_start_range_expression: ($) =>
       prec.right(

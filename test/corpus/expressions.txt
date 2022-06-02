@@ -60,6 +60,81 @@ geometry.area
     (identifier)))
 
 ==================
+Field access - String
+==================
+
+"name".count
+
+---
+
+(expression
+  (field_access
+    (string)
+    (identifier)))
+
+==================
+Field access - Variable
+==================
+
+`my variable`.count
+
+---
+
+(expression
+  (field_access
+    (identifier)
+    (identifier)))
+
+==================
+Field access - Rating
+==================
+
+★★★☆☆.score
+
+---
+
+(expression
+  (field_access
+    (rating)
+    (identifier)))
+
+==================
+Unit comparison
+==================
+
+distance < 7.5km
+
+---
+
+(expression
+  (binary_expression
+    (constant)
+    (suffix_expression
+      (number)
+      (unit))))
+
+==================
+Unit addition
+==================
+
+7.5km + 100m > 5mi
+
+---
+
+(expression
+  (binary_expression
+    (binary_expression
+      (suffix_expression
+        (number)
+        (unit))
+      (suffix_expression
+        (number)
+        (unit)))
+    (suffix_expression
+      (number)
+      (unit))))
+
+==================
 Gradient comparison
 ==================
 

@@ -68,6 +68,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -144,6 +148,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -217,6 +225,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "suffix_expression",
             "named": true
           },
           {
@@ -376,6 +388,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -459,6 +475,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "suffix_expression",
           "named": true
         },
         {
@@ -680,6 +700,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -756,6 +780,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -829,6 +857,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "suffix_expression",
             "named": true
           },
           {
@@ -926,6 +958,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -1010,6 +1046,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -1021,6 +1061,96 @@
     "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "suffix_expression",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "field_access",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "method_invocation",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "open_end_range_expression",
+            "named": true
+          },
+          {
+            "type": "open_start_range_expression",
+            "named": true
+          },
+          {
+            "type": "prefix_expression",
+            "named": true
+          },
+          {
+            "type": "range_expression",
+            "named": true
+          },
+          {
+            "type": "rating",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "ternary_expression",
@@ -1088,6 +1218,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "suffix_expression",
             "named": true
           },
           {
@@ -1161,6 +1295,10 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
@@ -1231,12 +1369,21 @@
             "named": true
           },
           {
+            "type": "suffix_expression",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           }
         ]
       }
     }
+  },
+  {
+    "type": "unit",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "!",
@@ -1411,6 +1558,14 @@
     "named": false
   },
   {
+    "type": "feet",
+    "named": false
+  },
+  {
+    "type": "ft",
+    "named": false
+  },
+  {
     "type": "geometry",
     "named": false
   },
@@ -1439,6 +1594,10 @@
     "named": false
   },
   {
+    "type": "km",
+    "named": false
+  },
+  {
     "type": "latitude",
     "named": false
   },
@@ -1452,6 +1611,18 @@
   },
   {
     "type": "longitude",
+    "named": false
+  },
+  {
+    "type": "m",
+    "named": false
+  },
+  {
+    "type": "mi",
+    "named": false
+  },
+  {
+    "type": "miles",
     "named": false
   },
   {

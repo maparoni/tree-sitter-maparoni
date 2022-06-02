@@ -775,6 +775,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "suffix_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "open_start_range_expression"
         },
         {
@@ -860,6 +864,60 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "suffix_expression": {
+      "type": "PREC_LEFT",
+      "value": 16,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "SYMBOL",
+              "name": "unit"
+            }
+          }
+        ]
+      }
+    },
+    "unit": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "km"
+        },
+        {
+          "type": "STRING",
+          "value": "m"
+        },
+        {
+          "type": "STRING",
+          "value": "mi"
+        },
+        {
+          "type": "STRING",
+          "value": "miles"
+        },
+        {
+          "type": "STRING",
+          "value": "ft"
+        },
+        {
+          "type": "STRING",
+          "value": "feet"
         }
       ]
     },
