@@ -89,8 +89,6 @@ module.exports = grammar({
     
     prefix_expression: $ => choice(
       ...[
-        ['+', PREC.UNARY],
-        ['-', PREC.UNARY],
         ['!', PREC.UNARY],
       ].map(([operator, precedence]) =>
         prec.left(precedence, seq(
@@ -98,7 +96,7 @@ module.exports = grammar({
           field('operand', $._expression)
         ))
       )),
-
+  
     suffix_expression: $ => prec.left(PREC.SUFFIX, seq(
         field('operand', $._expression),
         field('operator', $.unit)
@@ -201,7 +199,7 @@ module.exports = grammar({
 
     boolean: ($) => choice("true", "false"),
 
-    number: ($) => /[0-9]+(\.[0-9]+)?/,
+    number: ($) => /[+-]?[0-9]+(\.[0-9]+)?/,
 
     rating: ($) => /[★☆]+/,
 

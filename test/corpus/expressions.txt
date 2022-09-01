@@ -39,12 +39,9 @@ Prefixes
 (expression
   (binary_expression
     (binary_expression
-      (prefix_expression
-        (number))
-      (prefix_expression
-        (number)))
-    (prefix_expression
-      (number))))
+      (number)
+      (number))
+    (number)))
 
 ==================
 Field access
@@ -216,8 +213,7 @@ line(Position(33, -151)).fill(green)
           (type_identifier)
           (argument_list
             (number)
-            (prefix_expression
-              (number))))))
+            (number)))))
     (identifier)
     (argument_list
       (constant))))
