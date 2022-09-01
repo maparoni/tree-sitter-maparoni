@@ -18,7 +18,7 @@ Rules that are prefixed with a `_` will not be returned by the parser. Be mindfu
 ### Testing
 
 - When adding new functionality add new tests in the `test` directory.
-- Run `tree-sitter test` to run the suite from the `test` directory, and check that it all passes.
+- Run `tree-sitter generate` first, and then `tree-sitter test` to run the suite from the `test` directory, and check that it all passes.
 
 ### Whenever this was changed do
 

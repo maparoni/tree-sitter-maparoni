@@ -117,8 +117,7 @@ Real literals - Negative
 --------------------------------------------------------------------------------
 
 (expression
-  (prefix_expression
-    (number)))
+  (number))
 
 ================================================================================
 Real literals - Distance suffix
