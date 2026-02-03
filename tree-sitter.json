@@ -1,0 +1,19 @@
+{
+  "parser-directories": [
+    "src"
+  ],
+  "plugin-directories": [
+    "bindings"
+  ],
+  "metadata": {
+    "version": "0.2.0",
+    "scope": "source.maparoni-expression"
+  },
+  "grammars": [
+    {
+      "name": "maparoni",
+      "path": ".",
+      "scope": "source.maparoni-expression"
+    }
+  ]
+}

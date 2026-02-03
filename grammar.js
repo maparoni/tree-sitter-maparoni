@@ -128,6 +128,7 @@ module.exports = grammar({
 
     _primary_expression: $ => choice(
       $.constant,
+      $.variable,
       $.identifier,
       $._basic_literal,
       $.field_access,
@@ -142,20 +143,23 @@ module.exports = grammar({
       field('alternative', $._expression)
     )),  
 
+    // Formaggio variable references: $data, $regions, etc.
+    variable: ($) => /\$[a-zA-Z_][a-zA-Z0-9_]*/,
+
     // Literals
     _basic_literal: ($) =>
       choice(
         $.number,
-        // $.hex_literal,
-        // $.oct_literal,
-        // $.bin_literal,
-        // $.real_literal,
+        $.color,
         $.rating,
         $.boolean,
         $.string,
         $.array,
         $.nil,
       ),
+    
+    // CSS-like hex color literals: #fff, #ff80ee, #ff80ee80
+    color: ($) => token(seq('#', /[0-9a-fA-F]{3,8}/)),
     
     constant: ($) => choice(
       "id",
@@ -184,6 +188,7 @@ module.exports = grammar({
       "pink",
       "brown",
       "indigo",
+      "currentLocation",
       "linePoints",
       "collectionColor",
       "collectionLetter",
@@ -234,7 +239,7 @@ module.exports = grammar({
 
     method_invocation: ($) => seq(
       choice(
-        field('name', choice($.identifier, $.type_identifier)),
+        field('name', choice($.identifier, $.type_identifier, $.constant)),
         seq(
           field('object', $._primary_expression),
           '.',

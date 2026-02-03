@@ -14,6 +14,7 @@
 
 ; Variables
 
+(variable) @variable
 (identifier) @variable
 
 ; Literals
@@ -25,6 +26,8 @@
 [
   (string)
 ] @string
+
+(color) @constant.other.color
 
 [
   (boolean)
@@ -60,6 +63,7 @@
   "pink"
   "brown"
   "indigo"
+  "currentLocation"
   "linePoints"
   "collectionColor"
   "collectionLetter"

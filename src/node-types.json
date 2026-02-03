@@ -20,6 +20,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -73,6 +77,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -100,6 +108,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -153,6 +165,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -180,6 +196,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -233,6 +253,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -340,6 +364,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -394,6 +422,10 @@
           {
             "type": "ternary_expression",
             "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
           }
         ]
       }
@@ -412,6 +444,7 @@
   {
     "type": "expression",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": false,
@@ -427,6 +460,10 @@
         },
         {
           "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "color",
           "named": true
         },
         {
@@ -484,6 +521,10 @@
         {
           "type": "ternary_expression",
           "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
         }
       ]
     }
@@ -515,6 +556,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -544,6 +589,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -574,6 +623,10 @@
         "required": true,
         "types": [
           {
+            "type": "constant",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -593,6 +646,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "color",
             "named": true
           },
           {
@@ -625,6 +682,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -652,6 +713,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -705,6 +770,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -732,6 +801,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -785,6 +858,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -812,6 +889,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -865,6 +946,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -902,6 +987,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -955,6 +1044,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -990,6 +1083,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -1043,6 +1140,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -1075,6 +1176,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -1128,6 +1233,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -1165,6 +1274,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -1218,6 +1331,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -1239,6 +1356,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -1292,6 +1413,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -1313,6 +1438,10 @@
             "named": true
           },
           {
+            "type": "color",
+            "named": true
+          },
+          {
             "type": "constant",
             "named": true
           },
@@ -1366,6 +1495,10 @@
           },
           {
             "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
             "named": true
           }
         ]
@@ -1538,7 +1671,15 @@
     "named": false
   },
   {
+    "type": "color",
+    "named": true
+  },
+  {
     "type": "coordinate",
+    "named": false
+  },
+  {
+    "type": "currentLocation",
     "named": false
   },
   {
@@ -1663,6 +1804,10 @@
   },
   {
     "type": "type_identifier",
+    "named": true
+  },
+  {
+    "type": "variable",
     "named": true
   },
   {
